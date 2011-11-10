@@ -65,6 +65,9 @@ namespace Accpm
 	}
       } 
     BOOST_SERIALIZATION_SPLIT_MEMBER()
+
+    template<class Archive>
+      void serialize(Archive & ar, clients & c, const unsigned int version){}
 #endif
 
   public:

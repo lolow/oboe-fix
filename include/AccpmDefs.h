@@ -15,6 +15,8 @@
 #define ACCPM_MINUS_INF -ACCPM_PLUS_INF
 #include <iostream>
 #include <cmath>
+#include <cstring>
+#include <cstdlib>
 
 #include <set>
 typedef std::set<int> StdIntSet;
