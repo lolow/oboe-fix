@@ -4128,6 +4128,812 @@ fi
 
 CXXFLAGS="${CXXFLAGS=}"
 
+# Copyright (C) 2006 International Business Machines..
+# All Rights Reserved.
+# This file is distributed under the Common Public License.
+#
+## $Id: coin.m4 95 2006-07-12 00:37:48Z andreasw $
+#
+# Author: Andreas Wachter    IBM      2006-04-14
+
+# This file defines the common autoconf macros for COIN
+#
+
+# Check requirements
+
+
+###########################################################################
+#                           COIN_MAIN_SUBDIRS                             #
+###########################################################################
+
+# This macro sets up the recursion into configure scripts into
+# subdirectories.  Each possible subdirectory should be provided as a
+# new argument to this macro.  The current limit is 10 subdirectories.
+# This automatically also checks for the Data subdirectory.
+
+ # AC_COIN_MAIN_SUBDIRS
+
+###########################################################################
+#                        COIN_THIRDPARTY_SUBDIRS                          #
+###########################################################################
+
+# This macro sets up the recursion into the configure script in a
+# subdirectory for compilation of third party code.  The first
+# argument is just the string that appears in the configure output.
+# The second argument is the directory with the configure script, and
+# the third one is a file that should exists in that directory.  If
+# this file does not exist, we assume that the user has not downloaded
+# the code, and we are not going to compile it
+
+ # AC_COIN_THIRDPARTY_SUBDIRS
+
+###########################################################################
+#                           COIN_CHECK_VPATH                              #
+###########################################################################
+
+# This macro sets the variable coin_vpath_config to true if this is a
+# VPATH configuration, otherwise it sets it to false.
+ # AC_COIN_CHECK_VPATH
+
+###########################################################################
+#                         COIN_PROJECTDIR_INIT                            #
+###########################################################################
+
+# This macro does everything that is required in the early part in the
+# configure script, such as defining a few variables.  This should only
+# be used in the main directory of a project directory (the one under
+# which src is)
+
+ # AC_COIN_PROJECTDIR_INIT
+
+###########################################################################
+#                          COIN_DEBUG_COMPILE                             #
+###########################################################################
+
+# enable the configure flags --enable-debug and --enable-debug-prjct
+# (where prcjt is the name of the project in lower case) and set the
+# variable coin_debug_compile to true or false This is used by
+# COIN_PROG_CXX, COIN_PROG_CC and COIN_PROG_F77 to determine the
+# compilation flags.  This macro also makes the switches
+# --with-prjct-verbosity and --with-prjct-checklevel available, which
+# define the preprocessor macros COIN_PRJCT_VERBOSITY and
+# COIN_PRJCT_CHECKLEVEL to the specified value (default is 0).
+#
+# The project specific flags are only made available, if one gives the
+# name of the project as first argument to this macro.
+
+ # AC_COIN_DEBUG_COMPILE
+
+###########################################################################
+#                          COIN_MINGW_LD_FIX                              #
+###########################################################################
+
+# This macro is included by any PROG_compiler macro, to set the LD
+# environment variable on MinWG to the correct value (link)
+
+
+
+###########################################################################
+#                             COIN_PROG_CXX                               #
+###########################################################################
+
+# Find the compile command by running AC_PROG_CXX (with compiler names
+# for different operating systems) and put it into CXX (unless it was
+# given my the user), and find an appropriate value for CXXFLAGS.  It is
+# possible to provide additional -D flags in the variable CXXDEFS.
+
+ # AC_COIN_PROG_CXX
+
+
+###########################################################################
+#                             COIN_CXXLIBS                                #
+###########################################################################
+
+# Determine the C++ runtime libraries required for linking a C++ library
+# with a Fortran or C compiler.  The result is available in CXXLIBS.
+
+ # AC_COIN_CXXLIBS
+
+###########################################################################
+#                           COIN_CHECK_HEADER                             #
+###########################################################################
+
+# This macro checks for a header file, but it does so without the
+# standard header.  This avoids warning messages like:
+#
+# configure: WARNING: dlfcn.h: present but cannot be compiled
+# configure: WARNING: dlfcn.h:     check for missing prerequisite headers?
+# configure: WARNING: dlfcn.h: see the Autoconf documentation
+# configure: WARNING: dlfcn.h:     section "Present But Cannot Be Compiled"
+# configure: WARNING: dlfcn.h: proceeding with the preprocessor's result
+# configure: WARNING: dlfcn.h: in the future, the compiler will take precedence
+
+ # AC_COIN_CHECK_HEADER
+
+###########################################################################
+#                       COIN_CHECK_CXX_CHEADER                             #
+###########################################################################
+
+# This macro checks for C header files that are used from C++.  For a give
+# stub (e.g., math), it first checks if the C++ library (cmath) is available.
+# If it is, it defines HAVE_CMATH (or whatever the stub is).  If it is not
+# available, it checks for the old C head (math.h) and defines HAVE_MATH_H
+# if that one exists.
+
+ # AC_COIN_CHECK_CXX_CHEADER
+
+###########################################################################
+#                             COIN_PROG_CC                                #
+###########################################################################
+
+# Find the compile command by running AC_PROG_CC (with compiler names
+# for different operating systems) and put it into CC (unless it was
+# given my the user), and find an appropriate value for CFLAGS.  It is
+# possible to provide additional -D flags in the variable CDEFS.
+
+ # AC_COIN_PROG_CC
+
+###########################################################################
+#                             COIN_PROG_F77                               #
+###########################################################################
+
+# Find the compile command by running AC_PROG_F77 (with compiler names
+# for different operating systems) and put it into F77 (unless it was
+# given my the user), and find an appropriate value for FFLAGS
+
+ # AC_COIN_PROG_F77
+
+###########################################################################
+#                           COIN_F77_WRAPPERS                             #
+###########################################################################
+
+# Calls autoconfs AC_F77_WRAPPERS and does additional corrections to FLIBS
+
+ # AC_COIN_F77_WRAPPERS
+
+
+###########################################################################
+#                          COIN_INIT_AUTOMAKE                             #
+###########################################################################
+
+# This macro calls the regular INIT_AUTOMAKE and MAINTAINER_MODE
+# macros, and defines additional variables and makefile conditionals,
+# that are used in the maintainer parts of the makfile.  It also
+# checks if the correct versions of the autotools are used.
+#
+# This also defines the AC_SUBST variables:
+# abs_source_dir     absolute path to source code for this package
+# abs_bin_dir        absolute path to the directory where binaries are
+#                    going to be installed (prefix/bin)
+# abs_lib_dir        absolute path to the directory where libraries are
+#                    going to be installed (prefix/lib)
+# abs_include_dir    absolute path to the directory where the header files
+#                    are installed (prefix/include)
+
+ # AC_COIN_INIT_AUTOMAKE
+
+###########################################################################
+#                         COIN_INIT_AUTO_TOOLS                            #
+###########################################################################
+
+# Initialize the auto tools automake and libtool, with all
+# modifications we want for COIN packages.
+#
+# RPATH_FLAGS        link flags for hardcoding path to shared objects
+
+# This is a trick to have this code before AC_COIN_PROG_LIBTOOL
+
+
+ # AC_COIN_INIT_AUTO_TOOLS
+
+###########################################################################
+#                           COIN_PROG_LIBTOOL                             #
+###########################################################################
+
+# Setup the libtool stuff together with any modifications to make it
+# work on additional platforms
+
+ # AC_COIN_PROG_LIBTOOL
+
+# This is a trick to force the check for the dlfcn header to be done before
+# the checks for libtool
+ # AC_COIN_DLFCN_H
+
+###########################################################################
+#                            COIN_RPATH_FLAGS                             #
+###########################################################################
+
+# This macro, in case shared objects are used, defines a variable
+# RPATH_FLAGS that can be used by the linker to hardwire the library
+# search path for the given directories.  This is useful for example
+# Makefiles
+
+ # AC_COIN_RPATH_FLAGS
+
+###########################################################################
+#                              COIN_FINALIZE                              #
+###########################################################################
+
+# This macro should be called at the very end of the configure.ac file.
+# It creates the output files (by using AC_OUTPUT), and might do some other
+# things (such as generating links to data files in a VPATH configuration).
+# It also prints the "success" message.
+
+ #AC_COIN_FINALIZE
+
+###########################################################################
+#                             COIN_VPATH_LINK                             #
+###########################################################################
+
+# This macro makes sure that a symbolic link is created to a file in
+# the source code directory tree if we are in a VPATH compilation, and
+# if this package is the main package to be installed
+
+ #AC_COIN_VPATH_LINK
+
+###########################################################################
+#                       COIN_ENABLE_GNU_PACKAGES                          #
+###########################################################################
+
+# This macro defined the --enable-gnu-packages flag.  This can be used
+# to check if a user wants to compile GNU packges (such as readline or
+# zlib) into the executable.  By default, GNU packages are disabled.
+# This also defines the automake conditional COIN_ENABLE_GNU_PACKAGES
+
+ # AC_COIN_ENABLE_GNU_PACKAGES
+
+###########################################################################
+#                           COIN_CHECK_GNU_ZLIB                           #
+###########################################################################
+
+# This macro checks for the libz library.
+
+ # AC_COIN_CHECK_GNU_ZLIB
+
+
+###########################################################################
+#                          COIN_CHECK_GNU_BZLIB                           #
+###########################################################################
+
+# This macro checks for the libbz2 library.
+
+ # AC_COIN_CHECK_GNU_BZLIB
+
+
+###########################################################################
+#                         COIN_CHECK_GNU_READLINE                         #
+###########################################################################
+
+# This macro checks for GNU's readline.  It verifies that the header
+# readline/readline.h is available, and that the -lreadline library
+# contains "readline".  It is assumed that #include <stdio.h> is included
+# in the source file before the #include<readline/readline.h>
+
+ # AC_COIN_CHECK_GNU_READLINE
+
+###########################################################################
+#                             COIN_DATA_PATH                              #
+###########################################################################
+
+# This macro defines a preprocessor macro with the absolute path to a
+# subdirectory of Data.  The argument of this macro is the name of the
+# subdirectory (in correct case), and the name of the macro is
+# COIN_DATA_DIR_PATH, where dir is replaced by the capitalized name of
+# the directory.  The path ends with a separator ("/" for linux and
+# '\\' for Windows).  The default value for this path can be
+# overwritten with the input variable with the same name
+# (COIN_DATA_DIR_PATH).  At this point we chech only for the
+# $srcdir/../Data subdirectory.
+
+ # AC_COIN_HAS_DATA
+
+###########################################################################
+#                          COIN_EXAMPLE_FILES                             #
+###########################################################################
+
+# This macro determines the names of the example files (using the
+# argument in an "ls" command) and sets up the variables EXAMPLE_FILES
+# and EXAMPLE_CLEAN_FILES.  If this is a VPATH configuration, it also
+# creates soft links to the example files.
+
+ #AC_COIN_EXAMPLE_FILES
+
+###########################################################################
+#                            COIN_HAS_PROJECT                             #
+###########################################################################
+
+# This macro sets up usage of a Coin package.  It defines the
+# PKGSRCDIR and PKGOBJDIR variables, refering to the main source and
+# object directory of the package, respectively.  It also defines
+# a COIN_HAS_PKG preprocessor macro and makefile conditional.  The
+# argument should be the name (Pkg) of the project (in correct lower
+# and upper case)
+
+ # AC_COIN_HAS
+
+###########################################################################
+#                        COIN_HAS_USER_LIBRARY                            #
+###########################################################################
+
+# This macro sets up usage of a library with header files.  It defines
+# the LBRYINCDIR variable, and it defines COIN_HAS_LBRY preprocessor
+# macro and makefile conditional.  The first argument should be the
+# full name (LibraryName) of the library, and the second argument (in
+# upper case letters) the abbreviation (LBRY).  This macro also
+# introduces the configure arguments --with-libraryname-incdir and
+# --with-libraryname-lib which have to be both given by a user to use
+# this solver to tell the configure script where the include files and
+# the library are located.  Those arguments can also be given as
+# environement variables LBRYINCDIR and LBRYLIB, but a --with-*
+# argument overwrites an environment variable.  If a third argument is
+# given, it is assumed that this is the name of a header file that can
+# be checked for in the given include directory, and if a fourth
+# argument is given, it is assumed to be the name of a C function
+# which is given and defined in the library, and a test is done to
+# check if that symbol is defined in the library.
+# If it possible to disable the check, by specifying
+# --disable-libraryname-libcheck - this is a workaround for platforms
+# where checks don't work (yet) properly.
+
+ #AC_COIN_HAS_SOLVER
+
+###########################################################################
+#                               COIN_HAS_ASL                              #
+###########################################################################
+
+# This macro checks if the user has provide arguments that say where
+# the precompiled ASL files should be found (with the --with-asldir
+# flag).  If this is not the case, we check if the ThirdParty/ASL
+# directory has been configured, which indicates that the files will
+# be in that directory and can be used.
+
+ # AC_COIN_HAS_ASL
+
+###########################################################################
+#                            COIN_TRY_FLINK                               #
+###########################################################################
+
+# Auxilliary macro to test if a Fortran function name can be linked,
+# given the current settings of LIBS.  We determine from the context, what
+# the currently active programming language is, and cast the name accordingly.
+# The first argument is the name of the function/subroutine, in small letters,
+# the second argument are the actions taken when the test works, and the
+# third argument are the actions taken if the test fails.
+
+ # AC_COIN_TRY_FLINK
+
+###########################################################################
+#                             COIN_HAS_BLAS                               #
+###########################################################################
+
+# This macro checks for a library containing the BLAS library.  It
+# tried standard libraries, and if none is found to be working, it
+# checks whether the BLAS ThirdParty/Blas directory has been configured.
+# It adds to ADDLIBS any flags required to link with an externally provided
+# BLAS.  It defines the makefile conditional and preprocessor macro
+# COIN_HAS_BLAS, if blas is available, and it defines the makefile conditional
+# COIN_BUILD_BLAS, if blas is compiled within COIN.
+
+ # AC_COIN_HAS_BLAS
+
+###########################################################################
+#                            COIN_HAS_LAPACK                              #
+###########################################################################
+
+# This macro checks for a library containing the LAPACK library.  It
+# tried standard libraries, and if none is found to be working, it
+# checks whether the LAPACK ThirdParty/Lapack directory has been
+# configured.  It adds to ADDLIBS any flags required to link with an
+# externally provided LAPACK.  It defines the makefile conditional and
+# preprocessor macro COIN_HAS_LAPACK, if lapack is available, and it
+# defines the makefile conditional COIN_BUILD_LAPACK, if lapack is
+# compiled within COIN.
+
+ # AC_COIN_HAS_LAPACK
+
+# Copyright (C) 2006 International Business Machines..
+# All Rights Reserved.
+# This file is distributed under the Common Public License.
+#
+## $Id: coin.m4 95 2006-07-12 00:37:48Z andreasw $
+#
+# Author: Andreas Wachter    IBM      2006-04-14
+
+# This file defines the common autoconf macros for COIN
+#
+
+# Check requirements
+
+
+###########################################################################
+#                           COIN_MAIN_SUBDIRS                             #
+###########################################################################
+
+# This macro sets up the recursion into configure scripts into
+# subdirectories.  Each possible subdirectory should be provided as a
+# new argument to this macro.  The current limit is 10 subdirectories.
+# This automatically also checks for the Data subdirectory.
+
+ # AC_COIN_MAIN_SUBDIRS
+
+###########################################################################
+#                        COIN_THIRDPARTY_SUBDIRS                          #
+###########################################################################
+
+# This macro sets up the recursion into the configure script in a
+# subdirectory for compilation of third party code.  The first
+# argument is just the string that appears in the configure output.
+# The second argument is the directory with the configure script, and
+# the third one is a file that should exists in that directory.  If
+# this file does not exist, we assume that the user has not downloaded
+# the code, and we are not going to compile it
+
+ # AC_COIN_THIRDPARTY_SUBDIRS
+
+###########################################################################
+#                           COIN_CHECK_VPATH                              #
+###########################################################################
+
+# This macro sets the variable coin_vpath_config to true if this is a
+# VPATH configuration, otherwise it sets it to false.
+ # AC_COIN_CHECK_VPATH
+
+###########################################################################
+#                         OBOE_PROJECTDIR_INIT                            #
+###########################################################################
+
+# This macro does everything that is required in the early part in the
+# configure script, such as defining a few variables.  This should only
+# be used in the main directory of a project directory (the one under
+# which src is)
+
+ # AC_OBOE_PROJECTDIR_INIT
+
+###########################################################################
+#                          COIN_DEBUG_COMPILE                             #
+###########################################################################
+
+# enable the configure flags --enable-debug and --enable-debug-prjct
+# (where prcjt is the name of the project in lower case) and set the
+# variable coin_debug_compile to true or false This is used by
+# COIN_PROG_CXX, COIN_PROG_CC and COIN_PROG_F77 to determine the
+# compilation flags.  This macro also makes the switches
+# --with-prjct-verbosity and --with-prjct-checklevel available, which
+# define the preprocessor macros COIN_PRJCT_VERBOSITY and
+# COIN_PRJCT_CHECKLEVEL to the specified value (default is 0).
+#
+# The project specific flags are only made available, if one gives the
+# name of the project as first argument to this macro.
+
+ # AC_COIN_DEBUG_COMPILE
+
+###########################################################################
+#                          COIN_MINGW_LD_FIX                              #
+###########################################################################
+
+# This macro is included by any PROG_compiler macro, to set the LD
+# environment variable on MinWG to the correct value (link)
+
+
+
+###########################################################################
+#                             COIN_PROG_CXX                               #
+###########################################################################
+
+# Find the compile command by running AC_PROG_CXX (with compiler names
+# for different operating systems) and put it into CXX (unless it was
+# given my the user), and find an appropriate value for CXXFLAGS.  It is
+# possible to provide additional -D flags in the variable CXXDEFS.
+
+ # AC_COIN_PROG_CXX
+
+
+###########################################################################
+#                             COIN_CXXLIBS                                #
+###########################################################################
+
+# Determine the C++ runtime libraries required for linking a C++ library
+# with a Fortran or C compiler.  The result is available in CXXLIBS.
+
+ # AC_COIN_CXXLIBS
+
+###########################################################################
+#                           COIN_CHECK_HEADER                             #
+###########################################################################
+
+# This macro checks for a header file, but it does so without the
+# standard header.  This avoids warning messages like:
+#
+# configure: WARNING: dlfcn.h: present but cannot be compiled
+# configure: WARNING: dlfcn.h:     check for missing prerequisite headers?
+# configure: WARNING: dlfcn.h: see the Autoconf documentation
+# configure: WARNING: dlfcn.h:     section "Present But Cannot Be Compiled"
+# configure: WARNING: dlfcn.h: proceeding with the preprocessor's result
+# configure: WARNING: dlfcn.h: in the future, the compiler will take precedence
+
+ # AC_COIN_CHECK_HEADER
+
+###########################################################################
+#                       COIN_CHECK_CXX_CHEADER                             #
+###########################################################################
+
+# This macro checks for C header files that are used from C++.  For a give
+# stub (e.g., math), it first checks if the C++ library (cmath) is available.
+# If it is, it defines HAVE_CMATH (or whatever the stub is).  If it is not
+# available, it checks for the old C head (math.h) and defines HAVE_MATH_H
+# if that one exists.
+
+ # AC_COIN_CHECK_CXX_CHEADER
+
+###########################################################################
+#                             COIN_PROG_CC                                #
+###########################################################################
+
+# Find the compile command by running AC_PROG_CC (with compiler names
+# for different operating systems) and put it into CC (unless it was
+# given my the user), and find an appropriate value for CFLAGS.  It is
+# possible to provide additional -D flags in the variable CDEFS.
+
+ # AC_COIN_PROG_CC
+
+###########################################################################
+#                             COIN_PROG_F77                               #
+###########################################################################
+
+# Find the compile command by running AC_PROG_F77 (with compiler names
+# for different operating systems) and put it into F77 (unless it was
+# given my the user), and find an appropriate value for FFLAGS
+
+ # AC_COIN_PROG_F77
+
+###########################################################################
+#                           COIN_F77_WRAPPERS                             #
+###########################################################################
+
+# Calls autoconfs AC_F77_WRAPPERS and does additional corrections to FLIBS
+
+ # AC_COIN_F77_WRAPPERS
+
+
+###########################################################################
+#                          COIN_INIT_AUTOMAKE                             #
+###########################################################################
+
+# This macro calls the regular INIT_AUTOMAKE and MAINTAINER_MODE
+# macros, and defines additional variables and makefile conditionals,
+# that are used in the maintainer parts of the makfile.  It also
+# checks if the correct versions of the autotools are used.
+#
+# This also defines the AC_SUBST variables:
+# abs_source_dir     absolute path to source code for this package
+# abs_bin_dir        absolute path to the directory where binaries are
+#                    going to be installed (prefix/bin)
+# abs_lib_dir        absolute path to the directory where libraries are
+#                    going to be installed (prefix/lib)
+# abs_include_dir    absolute path to the directory where the header files
+#                    are installed (prefix/include)
+
+ # AC_COIN_INIT_AUTOMAKE
+
+###########################################################################
+#                         COIN_INIT_AUTO_TOOLS                            #
+###########################################################################
+
+# Initialize the auto tools automake and libtool, with all
+# modifications we want for COIN packages.
+#
+# RPATH_FLAGS        link flags for hardcoding path to shared objects
+
+# This is a trick to have this code before AC_COIN_PROG_LIBTOOL
+
+
+ # AC_COIN_INIT_AUTO_TOOLS
+
+###########################################################################
+#                           COIN_PROG_LIBTOOL                             #
+###########################################################################
+
+# Setup the libtool stuff together with any modifications to make it
+# work on additional platforms
+
+ # AC_COIN_PROG_LIBTOOL
+
+# This is a trick to force the check for the dlfcn header to be done before
+# the checks for libtool
+ # AC_COIN_DLFCN_H
+
+###########################################################################
+#                            COIN_RPATH_FLAGS                             #
+###########################################################################
+
+# This macro, in case shared objects are used, defines a variable
+# RPATH_FLAGS that can be used by the linker to hardwire the library
+# search path for the given directories.  This is useful for example
+# Makefiles
+
+ # AC_COIN_RPATH_FLAGS
+
+###########################################################################
+#                              COIN_FINALIZE                              #
+###########################################################################
+
+# This macro should be called at the very end of the configure.ac file.
+# It creates the output files (by using AC_OUTPUT), and might do some other
+# things (such as generating links to data files in a VPATH configuration).
+# It also prints the "success" message.
+
+ #AC_COIN_FINALIZE
+
+###########################################################################
+#                             COIN_VPATH_LINK                             #
+###########################################################################
+
+# This macro makes sure that a symbolic link is created to a file in
+# the source code directory tree if we are in a VPATH compilation, and
+# if this package is the main package to be installed
+
+ #AC_COIN_VPATH_LINK
+
+###########################################################################
+#                       COIN_ENABLE_GNU_PACKAGES                          #
+###########################################################################
+
+# This macro defined the --enable-gnu-packages flag.  This can be used
+# to check if a user wants to compile GNU packges (such as readline or
+# zlib) into the executable.  By default, GNU packages are disabled.
+# This also defines the automake conditional COIN_ENABLE_GNU_PACKAGES
+
+ # AC_COIN_ENABLE_GNU_PACKAGES
+
+###########################################################################
+#                           COIN_CHECK_GNU_ZLIB                           #
+###########################################################################
+
+# This macro checks for the libz library.
+
+ # AC_COIN_CHECK_GNU_ZLIB
+
+
+###########################################################################
+#                          COIN_CHECK_GNU_BZLIB                           #
+###########################################################################
+
+# This macro checks for the libbz2 library.
+
+ # AC_COIN_CHECK_GNU_BZLIB
+
+
+###########################################################################
+#                         COIN_CHECK_GNU_READLINE                         #
+###########################################################################
+
+# This macro checks for GNU's readline.  It verifies that the header
+# readline/readline.h is available, and that the -lreadline library
+# contains "readline".  It is assumed that #include <stdio.h> is included
+# in the source file before the #include<readline/readline.h>
+
+ # AC_COIN_CHECK_GNU_READLINE
+
+###########################################################################
+#                             COIN_DATA_PATH                              #
+###########################################################################
+
+# This macro defines a preprocessor macro with the absolute path to a
+# subdirectory of Data.  The argument of this macro is the name of the
+# subdirectory (in correct case), and the name of the macro is
+# COIN_DATA_DIR_PATH, where dir is replaced by the capitalized name of
+# the directory.  The path ends with a separator ("/" for linux and
+# '\\' for Windows).  The default value for this path can be
+# overwritten with the input variable with the same name
+# (COIN_DATA_DIR_PATH).  At this point we chech only for the
+# $srcdir/../Data subdirectory.
+
+ # AC_COIN_HAS_DATA
+
+###########################################################################
+#                          COIN_EXAMPLE_FILES                             #
+###########################################################################
+
+# This macro determines the names of the example files (using the
+# argument in an "ls" command) and sets up the variables EXAMPLE_FILES
+# and EXAMPLE_CLEAN_FILES.  If this is a VPATH configuration, it also
+# creates soft links to the example files.
+
+ #AC_COIN_EXAMPLE_FILES
+
+###########################################################################
+#                            COIN_HAS_PROJECT                             #
+###########################################################################
+
+# This macro sets up usage of a Coin package.  It defines the
+# PKGSRCDIR and PKGOBJDIR variables, refering to the main source and
+# object directory of the package, respectively.  It also defines
+# a COIN_HAS_PKG preprocessor macro and makefile conditional.  The
+# argument should be the name (Pkg) of the project (in correct lower
+# and upper case)
+
+ # AC_COIN_HAS
+
+###########################################################################
+#                        OBOE_HAS_USER_LIBRARY                            #
+###########################################################################
+
+# This macro sets up usage of a library with header files.  It defines
+# the LBRYINCDIR variable, and it defines OBOE_HAS_LBRY preprocessor
+# macro and makefile conditional.  The first argument should be the
+# full name (LibraryName) of the library, and the second argument (in
+# upper case letters) the abbreviation (LBRY).  This macro also
+# introduces the configure arguments --with-libraryname-incdir and
+# --with-libraryname-lib which have to be both given by a user to use
+# this solver to tell the configure script where the include files and
+# the library are located.  Those arguments can also be given as
+# environement variables LBRYINCDIR and LBRYLIB, but a --with-*
+# argument overwrites an environment variable.  If a third argument is
+# given, it is assumed that this is the name of a header file that can
+# be checked for in the given include directory, and if a fourth
+# argument is given, it is assumed to be the name of a C function
+# which is given and defined in the library, and a test is done to
+# check if that symbol is defined in the library.
+# If it possible to disable the check, by specifying
+# --disable-libraryname-libcheck - this is a workaround for platforms
+# where checks don't work (yet) properly.
+
+ #AC_OBOE_HAS_USER_LIBRARY
+
+###########################################################################
+#                               COIN_HAS_ASL                              #
+###########################################################################
+
+# This macro checks if the user has provide arguments that say where
+# the precompiled ASL files should be found (with the --with-asldir
+# flag).  If this is not the case, we check if the ThirdParty/ASL
+# directory has been configured, which indicates that the files will
+# be in that directory and can be used.
+
+ # AC_COIN_HAS_ASL
+
+###########################################################################
+#                            COIN_TRY_FLINK                               #
+###########################################################################
+
+# Auxilliary macro to test if a Fortran function name can be linked,
+# given the current settings of LIBS.  We determine from the context, what
+# the currently active programming language is, and cast the name accordingly.
+# The first argument is the name of the function/subroutine, in small letters,
+# the second argument are the actions taken when the test works, and the
+# third argument are the actions taken if the test fails.
+
+ # AC_COIN_TRY_FLINK
+
+###########################################################################
+#                             COIN_HAS_BLAS                               #
+###########################################################################
+
+# This macro checks for a library containing the BLAS library.  It
+# tried standard libraries, and if none is found to be working, it
+# checks whether the BLAS ThirdParty/Blas directory has been configured.
+# It adds to ADDLIBS any flags required to link with an externally provided
+# BLAS.  It defines the makefile conditional and preprocessor macro
+# COIN_HAS_BLAS, if blas is available, and it defines the makefile conditional
+# COIN_BUILD_BLAS, if blas is compiled within COIN.
+
+ # AC_COIN_HAS_BLAS
+
+###########################################################################
+#                            COIN_HAS_LAPACK                              #
+###########################################################################
+
+# This macro checks for a library containing the LAPACK library.  It
+# tried standard libraries, and if none is found to be working, it
+# checks whether the LAPACK ThirdParty/Lapack directory has been
+# configured.  It adds to ADDLIBS any flags required to link with an
+# externally provided LAPACK.  It defines the makefile conditional and
+# preprocessor macro COIN_HAS_LAPACK, if lapack is available, and it
+# defines the makefile conditional COIN_BUILD_LAPACK, if lapack is
+# compiled within COIN.
+
+ # AC_COIN_HAS_LAPACK
+
 
 
 echo "$as_me:$LINENO: checking whether to enable debugging" >&5
@@ -5489,7 +6295,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 5492 "configure"' > conftest.$ac_ext
+  echo '#line 6298 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -6151,7 +6957,7 @@ fi
 
 
 # Provide some information about the compiler.
-echo "$as_me:6154:" \
+echo "$as_me:6960:" \
      "checking for Fortran 77 compiler version" >&5
 ac_compiler=`set X $ac_compile; echo $2`
 { (eval echo "$as_me:$LINENO: \"$ac_compiler --version </dev/null >&5\"") >&5
@@ -7214,11 +8020,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7217: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:8023: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:7221: \$? = $ac_status" >&5
+   echo "$as_me:8027: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -7482,11 +8288,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7485: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:8291: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:7489: \$? = $ac_status" >&5
+   echo "$as_me:8295: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -7586,11 +8392,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7589: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:8395: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:7593: \$? = $ac_status" >&5
+   echo "$as_me:8399: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -9055,7 +9861,7 @@ linux*)
   libsuff=
   case "$host_cpu" in
   x86_64*|s390x*|powerpc64*)
-    echo '#line 9058 "configure"' > conftest.$ac_ext
+    echo '#line 9864 "configure"' > conftest.$ac_ext
     if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -9952,7 +10758,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 9955 "configure"
+#line 10761 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -10052,7 +10858,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 10055 "configure"
+#line 10861 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -12392,11 +13198,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:12395: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:13201: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:12399: \$? = $ac_status" >&5
+   echo "$as_me:13205: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -12496,11 +13302,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:12499: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:13305: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:12503: \$? = $ac_status" >&5
+   echo "$as_me:13309: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -13032,7 +13838,7 @@ linux*)
   libsuff=
   case "$host_cpu" in
   x86_64*|s390x*|powerpc64*)
-    echo '#line 13035 "configure"' > conftest.$ac_ext
+    echo '#line 13841 "configure"' > conftest.$ac_ext
     if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -14087,11 +14893,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:14090: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:14896: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:14094: \$? = $ac_status" >&5
+   echo "$as_me:14900: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -14191,11 +14997,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:14194: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:15000: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:14198: \$? = $ac_status" >&5
+   echo "$as_me:15004: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -15640,7 +16446,7 @@ linux*)
   libsuff=
   case "$host_cpu" in
   x86_64*|s390x*|powerpc64*)
-    echo '#line 15643 "configure"' > conftest.$ac_ext
+    echo '#line 16449 "configure"' > conftest.$ac_ext
     if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -16415,11 +17221,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:16418: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:17224: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:16422: \$? = $ac_status" >&5
+   echo "$as_me:17228: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -16683,11 +17489,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:16686: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:17492: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:16690: \$? = $ac_status" >&5
+   echo "$as_me:17496: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -16787,11 +17593,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:16790: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:17596: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:16794: \$? = $ac_status" >&5
+   echo "$as_me:17600: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -18256,7 +19062,7 @@ linux*)
   libsuff=
   case "$host_cpu" in
   x86_64*|s390x*|powerpc64*)
-    echo '#line 18259 "configure"' > conftest.$ac_ext
+    echo '#line 19065 "configure"' > conftest.$ac_ext
     if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -20283,6 +21089,7 @@ fi
 
 
 OBOE_INCLUDES="$OBOE_INCLUDES -I$LAPACKCPP_DIR -I$LAPACKCPP_DIR/include/ -I$LAPACKCPP_DIR/include/lapackpp"
+
 
 
                                                                                                                                                                                                                             ac_config_files="$ac_config_files Makefile README doc/Makefile m4/Makefile src/Makefile src/Utilities/Makefile src/AccpmLA/Makefile src/ProblemInput/Makefile src/AccpmCore/Makefile src/Oracle/Makefile src/UI/Makefile src/Benchmark/Makefile src/Benchmark/LA/Makefile src/Benchmark/PMED/Makefile src/Benchmark/QP/Makefile src/Benchmark/TSP/Makefile src/Benchmark/UAX/Makefile src/Benchmark/CS/Makefile src/Benchmark/HACCPM/Makefile src/Benchmark/NNPOL/Makefile src/Benchmark/MCF/Makefile src/Benchmark/APS/Makefile"

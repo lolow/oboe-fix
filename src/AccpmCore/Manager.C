@@ -473,7 +473,6 @@ Manager::update()
   }
   
   if (_phase2) {
-    _prevPhase2 = _phase2;
     updateRelativeGap();
   } else {
     if (!_param->getIntParameter("FixedProximalCenter")) {

@@ -32,7 +32,8 @@ Parameters::init()
   _optimizationType = "Min";
   _type = OPT_MIN;
   _numVariables = 0;
-  _numSubProblems = 1;
+  _pi = 0;
+  setNumSubProblems(1);
   
   _objLB = ACCPM_MINUS_INF;
   _objUB = ACCPM_PLUS_INF;
@@ -41,7 +42,6 @@ Parameters::init()
    _varLB = 0;
    _varUB = 0;
    _b = 0;
-   _pi = 0; 
    _delta = 5;
    _eta = 0.99;
    _gamma = 0.99;
@@ -198,6 +198,11 @@ Parameters::addParameter(const string &paramName, const string &paramType, const
   }
   AccpmWarning("Unknown parameter type.");
   return false;
+}
+
+Parameters::Parameters()
+{
+  init();
 }
 
 Parameters::Parameters(const char *fileName)

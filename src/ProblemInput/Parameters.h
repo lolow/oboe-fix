@@ -233,6 +233,7 @@ namespace Accpm
    
   public:
   
+    Parameters();
     Parameters(const char *fileName);
     virtual ~Parameters();
     

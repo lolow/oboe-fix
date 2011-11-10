@@ -284,6 +284,7 @@ namespace Accpm
      
     inline bool inPhase2() const { return _phase2; }
     inline bool previousPhase2() const { return _prevPhase2; }
+    inline void updatePreviousPhase2() { _prevPhase2 = _phase2; }
     inline bool isCurrentPointFeasible() const { return _currentPointIsFeasible; }
     inline ExitCode getExitCode() const { return _exitCode; }
     inline void setExitCode(ExitCode e) { _exitCode = e; }

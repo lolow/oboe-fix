@@ -167,14 +167,16 @@ void
 DualMethod::computeStepSize(const Manager &manager, const NewtonSolution &sol, const NewtonSolution &step, 
 			    AccpmVector &S, AccpmVector &DS, AccpmVector &W) const
 {
+  /* Bug fix for computeStepSize : July 21, 2008 */
+  S.append(sol._s);
+  DS.append(step._s);
+  W.append(manager.getCutOccurrence());
+
   if (manager.inPhase2()) {
-    S.append(sol._s);
     S.append(sol._s0);
     S.append(sol._ss);
-    DS.append(step._s);
     DS.append(step._s0);
     DS.append(step._ss);
-    W.append(manager.getCutOccurrence());
     W.append(manager.getWtEpigraphCut());
     W.append(manager.getPointGen()._ws);
   }

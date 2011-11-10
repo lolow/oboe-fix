@@ -31,6 +31,8 @@ dnl get the flags
 dnl CFLAGS="${CFLAGS=}"
 CXXFLAGS="${CXXFLAGS=}"
 
+m4_include([m4/coin.m4])
+m4_include([m4/oboe_usr_libs.m4])
 
 
 dnl this macro is used to get the arguments supplied
@@ -287,6 +289,7 @@ AC_SUBST(OBOE_LDFLAGS)
 AC_SUBST(OBOE_LDADD)
 OBOE_INCLUDES="$OBOE_INCLUDES -I$LAPACKCPP_DIR -I$LAPACKCPP_DIR/include/ -I$LAPACKCPP_DIR/include/lapackpp"
 AC_SUBST(OBOE_INCLUDES)
+
 
 AC_CONFIG_FILES([
    Makefile
